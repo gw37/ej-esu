@@ -1,0 +1,45 @@
+## Win10 ESU stuff - 
+## see also  - https://scloud.work/how-to-troubleshoot-intune-remediation-scripts-locally/
+## 
+
+#### Earthjustice MAK Keys
+#Windows 10 Ext Security Year 1 2025 MAK
+#QN947-PTC9D-X2WW9-KXCJ4-4YC48
+#Windows 10 Ext Security Year 2 2026 MAK
+#NP8BT-3KDY7-DC9WK-BQQK8-QDFWX
+#Windows 10 Ext Security Year 3 2027 MAK
+#G4PR9-N72B6-VGJRQ-MFYHX-3RXGB
+
+#Activation Keys
+#ESU Program	Activation ID
+#Win10 ESU Year1	f520e45e-7413-4a34-a497-d2765967d094
+#Win10 ESU Year2	1043add5-23b1-4afb-9a0f-64343c8f3f8d
+#Win10 ESU Year3	83d49986-add3-41d7-ba33-87c7bfb5c0fb
+
+
+
+cscript c:\windows\system32\slmgr.vbs /ipk "QN947-PTC9D-X2WW9-KXCJ4-4YC48"
+
+Windows 10 Ext Security Year 2 2026 MAK
+cscript c:\windows\system32\slmgr.vbs /ipk "NP8BT-3KDY7-DC9WK-BQQK8-QDFWX" 
+
+
+cscript c:\windows\system32\slmgr.vbs /ato "f520e45e-7413-4a34-a497-d2765967d094"
+cscript c:\windows\system32\slmgr.vbs /dlv > "C:\Users\gwalton\OneDrive - Earthjustice\Documents\ESUScript\dlvresult.txt"
+cscript c:\windows\system32\slmgr.vbs /dlv all "C:\Users\gwalton\OneDrive - Earthjustice\Documents\ESUScript\dlvallresult.txt"
+
+
+Output folder = "C:\Users\gwalton\OneDrive - Earthjustice\Documents\ESUScript"
+
+
+
+# Clear the license cache if needed
+slmgr.vbs /upk
+slmgr.vbs /cpky
+slmgr.vbs /rearm
+
+# Install ESU key
+slmgr.vbs /ipk XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
+
+# Activate
+slmgr.vbs /ato

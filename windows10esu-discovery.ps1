@@ -7,7 +7,7 @@
 
 $ActivationIDs = @(
   'f520e45e-7413-4a34-a497-d2765967d094', # Year 1
-  '1043add5-23b1-4afb-9a0f-64343c8f3f8d', # Year 2
+  '1043aadd5-23b1-4afb-9a0f-64343c8f3f8d', # Year 2
   '83d49986-add3-41d7-ba33-87c7bfb5c0fb'  # Year 3
 )
 
@@ -41,8 +41,8 @@ try {
     $filtered = $licenses | Where-Object { $_.PartialProductKey }
 
     # Find ESU products
-    $esu = $filtered |
-        Where-Object { $_.ActivationID -and ($ActivationIDs -contains $_.ActivationID.ToLower()) }
+    ##$esu = $filtered | Where-Object { $_.ActivationID -and ($ActivationIDs -contains $_.ActivationID.ToLower()) }
+    $esu = $filtered | Where-Object {$_.name -match "Client-ESU" -and $ActivationIDs -contains $_.ID.tolower()}
 
     if (-not $esu) {
         Write-Host "No ESU Activation IDs found among installed licenses."

@@ -23,11 +23,19 @@
 # Provide ESU keys in order of application (Year 1, Year 2, Year 3, etc.)
 # IMPORTANT: REPLACE THE PLACEHOLDER VALUES BELOW BEFORE USE
 # For KMS scenario, you may only need to supply the GVLK for the current year.
+
+#Windows 10 Ext Security Year 1 2025 MAK
+#QN947-PTC9D-X2WW9-KXCJ4-4YC48
+#Windows 10 Ext Security Year 2 2026 MAK
+#NP8BT-3KDY7-DC9WK-BQQK8-QDFWX
+#Windows 10 Ext Security Year 3 2027 MAK
+#G4PR9-N72B6-VGJRQ-MFYHX-3RXGB
 $ESUKeys = [ordered]@{
-    "Year1" = "84N9W-TTFW4-BCHXB-W7VR3-2WKGC"  # Placeholder
-    "Year2" = "FFFFF-GGGGG-HHHHH-IIIII-JJJJJ"  # Placeholder
-    "Year3" = "KKKKK-LLLLL-MMMMM-NNNNN-OOOOO"  # Placeholder
+    "Year1" = "QN947-PTC9D-X2WW9-KXCJ4-4YC48"  # Placeholder
+    "Year2" = "NP8BT-3KDY7-DC9WK-BQQK8-QDFWX"  # Placeholder
+    "Year3" = "G4PR9-N72B6-VGJRQ-MFYHX-3RXGB"  # Placeholder
 }
+
 
 # Known ESU Activation IDs (keep in sync with detection script)
 $ActivationIDs = @(
@@ -90,9 +98,12 @@ function Get-EsuProducts {
     param(
         [object[]]$AllLicenses
     )
-    $AllLicenses |
-        Where-Object { $_.PartialProductKey } |
-        Where-Object { $_.ActivationID -and ($ActivationIDs -contains $_.ActivationID.ToLower()) }
+    $v_all = $AllLicenses  | Where-Object {$_.name -match "Client-ESU" -and $ActivationIDs -contains $_.ID.tolower()}
+#    $AllLicenses |
+#        Where-Object { $_.PartialProductKey } |
+#        Where-Object { $_.ActivationID -and ($ActivationIDs -contains $_.ActivationID.ToLower()) }
+$AllLicenses | Where-Object {$_.name -match "Client-ESU" -and $ActivationIDs -contains $_.ID.tolower()}
+
 }
 
 function Test-EsuCompliant {

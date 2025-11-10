@@ -1,0 +1,3 @@
+https://github.com/a-ariff/intune-remediation-scripts
+https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/remediations
+https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/powershell-scripts-remediation#script-descriptions
